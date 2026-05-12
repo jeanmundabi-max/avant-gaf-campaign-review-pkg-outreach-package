@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avant GAF — Campaign Review</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --navy-light: #1a2f56;
+    --gold: #c9a84c;
+    --gold-light: #e4c878;
+    --cream: #f9f6ef;
+    --white: #ffffff;
+    --slate: #64748b;
+    --border: #e2e8f0;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --blue-bg: #eff6ff;
+    --blue: #2563eb;
+    --tag-fo: #7c3aed;
+    --tag-uk: #059669;
+    --tag-fm: #0369a1;
+    --tag-wm: #b45309;
+    --tag-hni: #be185d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #f1f5f9;
+    color: var(--navy);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .header-left .subtitle {
+    color: var(--gold-light);
+    font-size: 13px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .header-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 8px 16px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-intro {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  .section-intro h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-intro p {
+    color: var(--slate);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .section-intro ul {
+    margin-top: 12px;
+    padding-left: 20px;
+    color: var(--slate);
+    font-size: 14px;
+  }
+  .section-intro ul li { margin-bottom: 4px; }
+
+  /* ── SEGMENT TABS ── */
+  .seg-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .seg-tab {
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.15s;
+    background: var(--white);
+    color: var(--slate);
+    border-color: var(--border);
+  }
+  .seg-tab:hover { border-color: var(--navy); color: var(--navy); }
+  .seg-tab.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .seg-tab .count {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .seg-tab:not(.active) .count {
+    background: #f1f5f9;
+    color: var(--slate);
+  }
+
+  /* ── SEGMENT PANEL ── */
+  .seg-panel { display: none; }
+  .seg-panel.active { display: block; }
+
+  /* ── SEGMENT STAT ROW ── */
+  .seg-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .seg-stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .seg-stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .seg-stat-label {
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .seg-stat.highlight .seg-stat-num { color: var(--green); }
+
+  /* ── CONTACT EXAMPLE ── */
+  .example-contact {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .contact-avatar {
+    width: 52px;
+    height: 52px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .contact-info { flex: 1; }
+  .contact-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .contact-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 3px;
+  }
+  .contact-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(201,168,76,0.2);
+    color: var(--gold-light);
+  }
+  .contact-email-badge {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 5px;
+  }
+  .contact-email-badge span {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* ── EMAIL CARDS ── */
+  .sequence-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--slate);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .emails-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .email-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .email-header {
+    background: #f8fafc;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .email-num {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--slate);
+    white-space: nowrap;
+  }
+  .email-subject {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    flex: 1;
+  }
+  .angle-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+  }
+  .angle-friction { background: #fff7ed; color: #c2410c; }
+  .angle-goal { background: #f0fdf4; color: #15803d; }
+  .angle-comparison { background: #eff6ff; color: #1d4ed8; }
+  .email-body {
+    padding: 18px 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #374151;
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+  }
+
+  /* ── LINKEDIN CARDS ── */
+  .li-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .li-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .li-header {
+    background: #e8f0fe;
+    padding: 12px 20px;
+    border-bottom: 1px solid #c7d7f5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .li-icon {
+    width: 24px;
+    height: 24px;
+    background: #0077b5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .li-icon svg { width: 14px; height: 14px; fill: white; }
+  .li-step-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1d4ed8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .li-body {
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #374151;
+    font-family: 'Georgia', serif;
+  }
+  .li-char-count {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 8px;
+  }
+
+  /* ── PERSONALIZATION NOTE ── */
+  .perso-note {
+    background: var(--green-bg);
+    border: 1px solid #bbf7d0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #166534;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .perso-note .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── APPROVAL BAR ── */
+  .approval-bar {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .approval-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .approval-text p { font-size: 13px; color: var(--slate); }
+  .approval-actions { display: flex; gap: 10px; }
+  .btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+  .btn-approve {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-approve:hover { background: var(--navy-light); }
+  .btn-feedback {
+    background: var(--white);
+    color: var(--navy);
+    border: 2px solid var(--border);
+  }
+  .btn-feedback:hover { border-color: var(--navy); }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px 40px;
+    font-size: 12px;
+    color: var(--slate);
+    border-top: 1px solid var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── SEGMENT COLOR ACCENTS ── */
+  .seg-fo .seg-stat.highlight .seg-stat-num { color: var(--tag-fo); }
+  .seg-uk .seg-stat.highlight .seg-stat-num { color: var(--tag-uk); }
+  .seg-fm .seg-stat.highlight .seg-stat-num { color: var(--tag-fm); }
+  .seg-wm .seg-stat.highlight .seg-stat-num { color: var(--tag-wm); }
+  .seg-hni .seg-stat.highlight .seg-stat-num { color: var(--tag-hni); }
+
+  .tag-fo { background: #f3e8ff; color: var(--tag-fo); }
+  .tag-uk { background: #dcfce7; color: var(--tag-uk); }
+  .tag-fm { background: #dbeafe; color: var(--tag-fm); }
+  .tag-wm { background: #fef3c7; color: var(--tag-wm); }
+  .tag-hni { background: #fce7f3; color: var(--tag-hni); }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .emails-grid, .li-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(3, 1fr); }
+    .seg-stats { grid-template-columns: repeat(2, 1fr); }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .main { padding: 24px 20px 60px; }
+    .approval-bar { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>Avant Global Arbitrage Fund</h1>
+      <div class="subtitle">Outreach Campaign — Sequence Review &amp; Approval</div>
+    </div>
+    <div class="header-badge">Confidential — Client Review</div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">1,187</div>
+      <div class="stat-label">Total Contacts</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">689</div>
+      <div class="stat-label">Emails Found</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1,186</div>
+      <div class="stat-label">With Sequences</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Segments</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Touchpoints Each</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- INTRO -->
+  <div class="section-intro">
+    <h2>What you are reviewing</h2>
+    <p>
+      This document shows the personalised outreach sequences we have built for each of the five segments in the Avant GAF addressable market.
+      Each contact receives two emails and two LinkedIn messages. The sequences are fully written — not templates.
+    </p>
+    <ul>
+      <li><strong>UK Industry:</strong> Every email references the exact cash figure from that company's Companies House filing. 209 contacts, 108 with verified work emails.</li>
+      <li><strong>HNIs:</strong> Personalised to UAE vs UK location and seniority. 493 contacts, 307 with emails.</li>
+      <li><strong>Fund Managers:</strong> Positioned for DFSA-regulated managers adding USD yield to client mandates. 200 contacts, 136 with emails.</li>
+      <li><strong>Wealth Managers:</strong> Focused on client retention through yield products. 150 contacts, 72 with emails.</li>
+      <li><strong>Family Offices:</strong> CIO-level messaging on uncorrelated yield and cash drag. 135 contacts, 66 with emails.</li>
+    </ul>
+  </div>
+
+  <!-- TABS -->
+  <div class="seg-tabs">
+    <div class="seg-tab active" onclick="showSeg('fo', this)">
+      Family Office <span class="count">135</span>
+    </div>
+    <div class="seg-tab" onclick="showSeg('uk', this)">
+      UK Industry <span class="count">209</span>
+    </div>
+    <div class="seg-tab" onclick="showSeg('fm', this)">
+      Fund Managers <span class="count">200</span>
+    </div>
+    <div class="seg-tab" onclick="showSeg('wm', this)">
+      Wealth Managers <span class="count">150</span>
+    </div>
+    <div class="seg-tab" onclick="showSeg('hni', this)">
+      HNIs <span class="count">493</span>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- FAMILY OFFICE -->
+  <!-- ════════════════════════════════════════════════ -->
+  <div class="seg-panel seg-fo active" id="panel-fo">
+
+    <div class="seg-stats">
+      <div class="seg-stat">
+        <div class="seg-stat-num">135</div>
+        <div class="seg-stat-label">Total Contacts</div>
+      </div>
+      <div class="seg-stat highlight">
+        <div class="seg-stat-num">66</div>
+        <div class="seg-stat-label">Emails Found</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">135</div>
+        <div class="seg-stat-label">With Sequences</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">GCC / UAE</div>
+        <div class="seg-stat-label">Primary Location</div>
+      </div>
+    </div>
+
+    <div class="perso-note">
+      <span class="icon">✦</span>
+      <span>Personalisation angle: CIO-level cash drag. Family offices typically hold 15–25% of capital in near-cash earning 3–4%. Each sequence positions Avant GAF as uncorrelated yield — not a trading strategy. Company name is referenced in Email 1 and LinkedIn DM.</span>
+    </div>
+
+    <div class="example-contact">
+      <div class="contact-avatar">B</div>
+      <div class="contact-info">
+        <div class="contact-name">Bhuvan U. Kochar</div>
+        <div class="contact-meta">CEO · Portfolio Fifty · GCC / UAE</div>
+        <div class="contact-email-badge">Email: <span>bhuvan@portfolio50.com</span></div>
+      </div>
+      <div class="contact-tag">Example Contact</div>
+    </div>
+
+    <div class="sequence-label">Email Sequence — 2 touches, different angles</div>
+    <div class="emails-grid">
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 1</div>
+          <div class="email-subject">8.20% USD — uncorrelated, monthly exits</div>
+          <div class="angle-tag angle-friction">Friction</div>
+        </div>
+        <div class="email-body">Bhuvan, most family office CIOs allocating in 2026 are sitting on 15 to 25 per cent in cash or near-cash — earning 3 to 4 per cent at best.
+
+Avant Global Arbitrage Fund has returned 8.20 per cent per annum in USD since 2015. Monthly redemption windows. No lock-up. Not correlated to equity markets.
+
+Fixed income arbitrage — finds the spread, executes, holds to convergence. We handle the subscription paperwork.
+
+Nine-year audited track record. Current allocation window is open.
+
+I can show you how Avant's strategy fits Portfolio Fifty's liquidity structure.
+
+Jean</div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 2</div>
+          <div class="email-subject">What family offices in the GCC are allocating to</div>
+          <div class="angle-tag angle-comparison">Comparison</div>
+        </div>
+        <div class="email-body">Bhuvan, family offices in the GCC increasingly use fixed income arbitrage as a 10 to 15 per cent carve-out from the overall book — uncorrelated yield, short duration.
+
+Avant GAF delivers 8.20 per cent per annum in USD. Nine years. Monthly exits. No 12-month commitment.
+
+I have a pre-built allocation document showing how the strategy sits in a standard family office structure. Happy to send it.
+
+I can show you how Avant fits for Portfolio Fifty.
+
+Jean</div>
+      </div>
+    </div>
+
+    <div class="sequence-label">LinkedIn Sequence — connect then follow up</div>
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 1 — Connection Request</div>
+        </div>
+        <div class="li-body">
+          Hi Bhuvan — I work with family office CIOs on USD yield strategies with monthly liquidity. Avant GAF returns 8.20% annually — 9 years, uncorrelated to equities. Happy to connect.
+          <div class="li-char-count">147 characters</div>
+        </div>
+      </div>
+
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 2 — Follow-up DM (after connect)</div>
+        </div>
+        <div class="li-body">
+          Thanks for connecting, Bhuvan. Avant Global Arbitrage Fund returns 8.20 per cent per annum in USD — monthly exit windows, no lock-up, nine years. If you are looking for uncorrelated yield for family capital, happy to send the one-pager. Jean
+          <div class="li-char-count">244 characters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- UK INDUSTRY -->
+  <!-- ════════════════════════════════════════════════ -->
+  <div class="seg-panel seg-uk" id="panel-uk">
+
+    <div class="seg-stats">
+      <div class="seg-stat">
+        <div class="seg-stat-num">209</div>
+        <div class="seg-stat-label">Total Contacts</div>
+      </div>
+      <div class="seg-stat highlight">
+        <div class="seg-stat-num">108</div>
+        <div class="seg-stat-label">Emails Found</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">208</div>
+        <div class="seg-stat-label">With Sequences</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">UK</div>
+        <div class="seg-stat-label">Companies House Source</div>
+      </div>
+    </div>
+
+    <div class="perso-note">
+      <span class="icon">✦</span>
+      <span><strong>Highest personalisation tier.</strong> Every email references the exact cash position from the company's most recent Companies House filing — including the year, the amount to the pound, the computed bank interest at 4.75%, and the Avant return at 8.20%. No two emails are the same. The gap figure in Email 2 is calculated individually for each contact.</span>
+    </div>
+
+    <div class="example-contact">
+      <div class="contact-avatar">B</div>
+      <div class="contact-info">
+        <div class="contact-name">Ben Dolman</div>
+        <div class="contact-meta">Owner / Director · HOLIFERM LIMITED · United Kingdom</div>
+        <div class="contact-email-badge">Email: <span>ben.dolman@holiferm.com</span> &nbsp;·&nbsp; Cash on file: <span>£8,969,147 (2026 accounts)</span></div>
+      </div>
+      <div class="contact-tag">Example Contact</div>
+    </div>
+
+    <div class="sequence-label">Email Sequence — cash-specific, two angles</div>
+    <div class="emails-grid">
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 1</div>
+          <div class="email-subject">HOLIFERM LIMITED — £8,969,147 at 4.75%</div>
+          <div class="angle-tag angle-friction">Friction</div>
+        </div>
+        <div class="email-body">Ben, HOLIFERM LIMITED's 2026 accounts show £8,969,147 in cash.
+
+At current bank rates that earns £426,034 per year. Avant Global Arbitrage Fund returned 8.20 per cent per annum in USD over nine years — monthly exit windows, no 12-month lock-up.
+
+We find the arbitrage spread, execute the position, and handle all compliance documentation.
+
+Nine years of audited returns. Next allocation window: June 2026.
+
+I can show you what £8,969,147 earns at 8.20 per cent versus current rates on a 10-minute call.
+
+Jean</div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 2</div>
+          <div class="email-subject">The £309,436 difference for HOLIFERM LIMITED</div>
+          <div class="angle-tag angle-goal">Goal</div>
+        </div>
+        <div class="email-body">Ben, at 8.20 per cent per annum, £8,969,147 in cash returns £735,470 per year in USD.
+
+At your current bank rate, that same cash returns £426,034.
+
+The difference is £309,436 every year.
+
+Avant GAF has delivered 8.20 per cent since 2015. Monthly exits. No lock-up.
+
+I can walk you through the numbers for HOLIFERM LIMITED specifically.
+
+Jean</div>
+      </div>
+    </div>
+
+    <div class="sequence-label">LinkedIn Sequence</div>
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 1 — Connection Request</div>
+        </div>
+        <div class="li-body">
+          Hi Ben — I work with UK commodity trading business owners on USD yield strategies. HOLIFERM LIMITED's cash position could be working harder. Avant GAF returns 8.20 per cent annually — monthly liquidity, 9 years. Happy to connect.
+          <div class="li-char-count">232 characters</div>
+        </div>
+      </div>
+
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 2 — Follow-up DM</div>
+        </div>
+        <div class="li-body">
+          Thanks for connecting, Ben. HOLIFERM LIMITED filed £8,969,147 in cash last year. At 8.20 per cent per annum through Avant GAF, that earns £735,470 — monthly exit windows, no lock-up. Happy to send the one-pager if useful. Jean
+          <div class="li-char-count">228 characters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- FUND MANAGERS -->
+  <!-- ════════════════════════════════════════════════ -->
+  <div class="seg-panel seg-fm" id="panel-fm">
+
+    <div class="seg-stats">
+      <div class="seg-stat">
+        <div class="seg-stat-num">200</div>
+        <div class="seg-stat-label">Total Contacts</div>
+      </div>
+      <div class="seg-stat highlight">
+        <div class="seg-stat-num">136</div>
+        <div class="seg-stat-label">Emails Found</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">200</div>
+        <div class="seg-stat-label">With Sequences</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">DFSA / ADGM</div>
+        <div class="seg-stat-label">Regulatory Context</div>
+      </div>
+    </div>
+
+    <div class="perso-note">
+      <span class="icon">✦</span>
+      <span>Positioning angle: regulated managers need a compliant USD yield product above 6% to satisfy client demand. Email 1 opens with the market context (demand exceeding supply). Email 2 frames the gap in basis points. LinkedIn references their firm specifically.</span>
+    </div>
+
+    <div class="example-contact">
+      <div class="contact-avatar">T</div>
+      <div class="contact-info">
+        <div class="contact-name">Timo Vogler</div>
+        <div class="contact-meta">CEO / Portfolio Manager · Julius Baer (Middle East) Limited · DIFC, Dubai</div>
+        <div class="contact-email-badge">Email: <span>timo.vogler@juliusbaer.com</span></div>
+      </div>
+      <div class="contact-tag">Example Contact</div>
+    </div>
+
+    <div class="sequence-label">Email Sequence</div>
+    <div class="emails-grid">
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 1</div>
+          <div class="email-subject">USD yield product — 8.20% per annum, monthly liquidity</div>
+          <div class="angle-tag angle-friction">Friction</div>
+        </div>
+        <div class="email-body">Timo, DFSA-regulated managers are fielding increasing client demand for USD yield instruments above 6 per cent with short lock-up periods. The options are limited.
+
+Avant Global Arbitrage Fund returns 8.20 per cent per annum in USD. Nine years. Monthly redemption windows. Compliant structure for professional clients.
+
+We handle subscription documentation and KYC for each client allocation.
+
+Nine years of audited returns. Fund documentation available on request.
+
+I can send you the fund documentation to review whether it fits your client mandates.
+
+Jean</div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 2</div>
+          <div class="email-subject">Adding 8.20% USD to client portfolios</div>
+          <div class="angle-tag angle-goal">Goal</div>
+        </div>
+        <div class="email-body">Timo, the gap between what DFSA-regulated managers can offer clients in USD yield and Avant GAF's 8.20 per cent per annum is 2 to 3 points — on the same capital, with monthly liquidity.
+
+Nine years. Audited. Monthly exits. Available for professional client allocation.
+
+I have the documentation pack ready for your compliance review.
+
+Happy to walk you through how other managers are structuring client allocations to Avant.
+
+Jean</div>
+      </div>
+    </div>
+
+    <div class="sequence-label">LinkedIn Sequence</div>
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 1 — Connection Request</div>
+        </div>
+        <div class="li-body">
+          Hi Timo — I work with DFSA-regulated fund managers on USD yield products for client portfolios. Avant GAF returns 8.20% annually — 9 years, monthly exits. Relevant to your work at Julius Baer (Middle East) Limited. Happy to connect.
+          <div class="li-char-count">236 characters</div>
+        </div>
+      </div>
+
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 2 — Follow-up DM</div>
+        </div>
+        <div class="li-body">
+          Thanks for connecting, Timo. Avant Global Arbitrage Fund returns 8.20 per cent per annum in USD — monthly exits, no lock-up, nine years. Happy to send the fund documentation for your compliance review. Jean
+          <div class="li-char-count">207 characters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- WEALTH MANAGERS -->
+  <!-- ════════════════════════════════════════════════ -->
+  <div class="seg-panel seg-wm" id="panel-wm">
+
+    <div class="seg-stats">
+      <div class="seg-stat">
+        <div class="seg-stat-num">150</div>
+        <div class="seg-stat-label">Total Contacts</div>
+      </div>
+      <div class="seg-stat highlight">
+        <div class="seg-stat-num">72</div>
+        <div class="seg-stat-label">Emails Found</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">150</div>
+        <div class="seg-stat-label">With Sequences</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">DIFC / UK</div>
+        <div class="seg-stat-label">Primary Location</div>
+      </div>
+    </div>
+
+    <div class="perso-note">
+      <span class="icon">✦</span>
+      <span>Angle: the yield gap between sterling deposits and Avant GAF is 3 to 4 points on the same capital. Email 2 addresses client retention — advisors who can offer 8.20% are gaining ground as rates fall. Firm name is referenced in both emails and LinkedIn DM.</span>
+    </div>
+
+    <div class="example-contact">
+      <div class="contact-avatar">D</div>
+      <div class="contact-info">
+        <div class="contact-name">Dorian James Phillips</div>
+        <div class="contact-meta">Principal Representative · Baring Asset Management Limited · DIFC, Dubai</div>
+        <div class="contact-email-badge">Email: <span>james.govan@barings.com</span></div>
+      </div>
+      <div class="contact-tag">Example Contact</div>
+    </div>
+
+    <div class="sequence-label">Email Sequence</div>
+    <div class="emails-grid">
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 1</div>
+          <div class="email-subject">8.20% USD with monthly exit — for client portfolios</div>
+          <div class="angle-tag angle-friction">Friction</div>
+        </div>
+        <div class="email-body">Dorian, the yield gap between standard sterling deposits and Avant GAF's 8.20 per cent per annum in USD is 3 to 4 points — on the same capital, with monthly redemption windows.
+
+Avant has run this strategy for nine years. No 12-month lock-up. Minimum allocation sized for wealth management clients.
+
+We run the subscription process and investor onboarding. Your clients just sign.
+
+Nine years of verified returns.
+
+I can walk you through how other wealth managers are structuring Avant allocations for client portfolios.
+
+Jean</div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 2</div>
+          <div class="email-subject">Retaining clients with 8.20% USD yield</div>
+          <div class="angle-tag angle-comparison">Comparison</div>
+        </div>
+        <div class="email-body">Dorian, the advisors gaining ground with clients right now are the ones offering USD yield above 6 per cent with short lock-ups — before rates fall further.
+
+Avant GAF returns 8.20 per cent per annum since 2015. Monthly exits. Audited.
+
+I have a pre-built allocation document for client use ready to send.
+
+I can show you how to introduce Avant to your existing book for Baring Asset Management Limited without disrupting current allocations.
+
+Jean</div>
+      </div>
+    </div>
+
+    <div class="sequence-label">LinkedIn Sequence</div>
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 1 — Connection Request</div>
+        </div>
+        <div class="li-body">
+          Hi Dorian — I work with wealth managers on USD yield products for client portfolios. Avant GAF returns 8.20% annually — 9 years, monthly exits. Relevant to your work for Baring Asset Management Limited. Happy to connect.
+          <div class="li-char-count">223 characters</div>
+        </div>
+      </div>
+
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 2 — Follow-up DM</div>
+        </div>
+        <div class="li-body">
+          Thanks for connecting, Dorian. Avant Global Arbitrage Fund returns 8.20 per cent per annum in USD — monthly exits, no lock-up, nine years. Happy to send the allocation document for client use. Jean
+          <div class="li-char-count">199 characters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════ -->
+  <!-- HNIs -->
+  <!-- ════════════════════════════════════════════════ -->
+  <div class="seg-panel seg-hni" id="panel-hni">
+
+    <div class="seg-stats">
+      <div class="seg-stat">
+        <div class="seg-stat-num">493</div>
+        <div class="seg-stat-label">Total Contacts</div>
+      </div>
+      <div class="seg-stat highlight">
+        <div class="seg-stat-num">307</div>
+        <div class="seg-stat-label">Emails Found</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">493</div>
+        <div class="seg-stat-label">With Sequences</div>
+      </div>
+      <div class="seg-stat">
+        <div class="seg-stat-num">UAE / GCC</div>
+        <div class="seg-stat-label">Primary Location</div>
+      </div>
+    </div>
+
+    <div class="perso-note">
+      <span class="icon">✦</span>
+      <span>Finance Directors, MDs, CFOs, and senior professionals in the UAE and GCC. Personalisation uses their first name, location (UAE vs UK), and company. The friction angle plays on correlated regional equity and property risk. The goal angle quantifies the yield gap in percentage points.</span>
+    </div>
+
+    <div class="example-contact">
+      <div class="contact-avatar">A</div>
+      <div class="contact-info">
+        <div class="contact-name">Asim Noor</div>
+        <div class="contact-meta">Finance Director · Dubai Holding Investments · UAE</div>
+        <div class="contact-email-badge">Email: <span>asim.noor@dubaiholding.com</span></div>
+      </div>
+      <div class="contact-tag">Example Contact</div>
+    </div>
+
+    <div class="sequence-label">Email Sequence</div>
+    <div class="emails-grid">
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 1</div>
+          <div class="email-subject">USD yield above 6% — monthly liquidity</div>
+          <div class="angle-tag angle-friction">Friction</div>
+        </div>
+        <div class="email-body">Asim, most senior finance professionals in the UAE I speak to are holding capital in regional equities and property. Both correlated to the same macro risk.
+
+Avant Global Arbitrage Fund has returned 8.20 per cent per annum in USD since 2015 — monthly exit windows, no 12-month lock-up.
+
+We find the arbitrage spread, execute the position, and handle onboarding from KYC through to compliance.
+
+Nine years of audited returns. Next window: June 2026.
+
+I can walk you through how Avant's structure sits alongside a typical UAE-based capital position.
+
+Jean</div>
+      </div>
+
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-num">Email 2</div>
+          <div class="email-subject">8.20% USD — nine years, monthly exits</div>
+          <div class="angle-tag angle-goal">Goal</div>
+        </div>
+        <div class="email-body">Asim, the gap between regional bank deposit rates and Avant GAF's 8.20 per cent per annum in USD is 3 to 5 percentage points on the same capital.
+
+Avant has run this strategy since 2015. Monthly redemptions. No institutional minimum. DIFC-relevant documentation available.
+
+I have built the allocation breakdown for UAE investors. Happy to send it over.
+
+I can show you the return difference on your current capital position.
+
+Jean</div>
+      </div>
+    </div>
+
+    <div class="sequence-label">LinkedIn Sequence</div>
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 1 — Connection Request</div>
+        </div>
+        <div class="li-body">
+          Hi Asim — I work with UAE-based finance professionals on USD yield strategies with monthly liquidity. Avant GAF returns 8.20% annually — 9 years. Relevant to your role at Dubai Holding Investments. Happy to connect.
+          <div class="li-char-count">218 characters</div>
+        </div>
+      </div>
+
+      <div class="li-card">
+        <div class="li-header">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="li-step-label">Step 2 — Follow-up DM</div>
+        </div>
+        <div class="li-body">
+          Thanks for connecting, Asim. Avant Global Arbitrage Fund returns 8.20 per cent per annum in USD — monthly exit windows, no lock-up, nine-year track record. If you are looking at USD yield as part of your allocation, happy to send the one-pager. Jean
+          <div class="li-char-count">252 characters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- APPROVAL BAR -->
+  <div class="approval-bar">
+    <div class="approval-text">
+      <h3>Review complete?</h3>
+      <p>Share any feedback on tone, angle, or wording and we can adjust before sending. Once approved, 689 contacts go live in the first wave.</p>
+    </div>
+    <div class="approval-actions">
+      <a class="btn btn-feedback" href="mailto:jeanmundabi@gmail.com?subject=Avant%20GAF%20Campaign%20%E2%80%94%20Feedback&body=Hi%20Jean%2C%0A%0AHere%20is%20my%20feedback%20on%20the%20sequences%3A%0A%0A" style="text-decoration:none;display:inline-block">Request Changes</a>
+      <a class="btn btn-approve" href="mailto:jeanmundabi@gmail.com?subject=Avant%20GAF%20Campaign%20%E2%80%94%20Approved&body=Hi%20Jean%2C%0A%0AI%20have%20reviewed%20the%20outreach%20sequences%20and%20I%20am%20happy%20to%20proceed.%20Please%20go%20ahead%20with%20the%20first%20wave%20of%20689%20contacts.%0A%0A" style="text-decoration:none;display:inline-block">Approve Sequences</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Avant Global Arbitrage Fund — Outreach Campaign · Prepared by MDB Growth Capital · Confidential
+</div>
+
+<script>
+  function showSeg(seg, el) {
+    document.querySelectorAll('.seg-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.seg-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + seg).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo({ top: document.querySelector('.seg-tabs').offsetTop - 80, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
